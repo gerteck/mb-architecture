@@ -1,0 +1,56 @@
+@startuml
+!define darkmode true
+
+skinparam monochrome true
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+
+actor User
+control CLI
+boundary LiveServer
+database FileSystem
+control Site
+control Chokidar
+
+User -> CLI: run serve()
+CLI -> CLI: Parse options\n(e.g., dev, forceReload)
+CLI -> FileSystem: Find root folder
+FileSystem --> CLI: rootFolder, logsFolder, outputFolder
+
+alt One-page mode
+    CLI -> FileSystem: Check for index.md
+    FileSystem --> CLI: index.md exists?
+    CLI -> CLI: Set onePagePath
+else Full-site mode
+    CLI -> CLI: Proceed without onePagePath
+end
+
+CLI -> Site: Initialize Site instance
+Site -> FileSystem: Read site config
+FileSystem --> Site: siteConfig
+
+alt "Host address is '0.0.0.0'"
+    CLI -> User: Prompt warning
+    User --> CLI: Confirm to proceed?
+end
+
+CLI -> Site: Generate site
+Site --> FileSystem: Write generated site files
+FileSystem --> CLI: Done
+
+CLI -> LiveServer: Start server
+LiveServer --> CLI: Server started
+CLI -> User: Log server URL
+
+CLI -> Chokidar: Watch for file changes
+Chokidar -> FileSystem: Monitor changes
+
+alt File change detected
+    Chokidar -> Site: Add, change, or remove file
+    Site -> FileSystem: Update output files
+    Chokidar -> LiveServer: Reload browser
+end
+
+User -> CLI: CTRL+C
+CLI -> LiveServer: Stop server
+@enduml
