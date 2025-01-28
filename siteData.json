@@ -1,0 +1,69 @@
+{
+  "enableSearch": true,
+  "pages": [
+    {
+      "src": "404.md",
+      "title": "Page not found",
+      "headings": {},
+      "headingKeywords": {}
+    },
+    {
+      "src": "README.md",
+      "headings": {
+        "readme": "README"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "contents/architecture.md",
+      "title": "Architecture",
+      "headings": {
+        "architecture": "Architecture",
+        "key-classes": "Key classes",
+        "content-processing-flow": "Content processing flow"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "contents/mb_CLI.md",
+      "title": "MarkBind CLI",
+      "headings": {
+        "markbind-command-line-interface": "MarkBind Command Line Interface",
+        "markbind-init": "markbind Init"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "contents/topic2.md",
+      "title": "Topic 2",
+      "headings": {
+        "topic-2": "Topic 2"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "contents/topic3a.md",
+      "title": "Topic 3a",
+      "headings": {
+        "topic-3a": "Topic 3a"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "contents/topic3b.md",
+      "title": "Topic 3b",
+      "headings": {
+        "topic-3b": "Topic 3b"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "index.md",
+      "title": "Home Page",
+      "headings": {
+        "hello-there": "Hello There"
+      },
+      "headingKeywords": {}
+    }
+  ]
+}
