@@ -1,0 +1,60 @@
+@startuml
+title MarkBind CLI Workflow
+
+package "CLI Entry Point" {
+  [main.js] --> [commander]
+  [main.js] --> [logger]
+  [main.js] --> [build]
+  [main.js] --> [deploy]
+  [main.js] --> [init]
+  [main.js] --> [serve]
+}
+
+note left of [commander]
+  Defines CLI commands and options.
+  Uses the commander library.
+end note
+
+note bottom of [logger]
+  Handles logging and displays
+  the MarkBind logo.
+end note
+
+package "Commands" {
+  [init]
+  [serve]
+  [build]
+  [deploy]
+}
+
+note bottom of [init]
+  Initializes a new MarkBind project.
+  Can convert GitHub wikis or docs.
+  Usage: init [root] &#45;&#45;convert --template
+end note
+
+note right of [serve]
+  Serves the website locally.
+  Supports live reload and
+  background builds.
+  Usage: serve [root] &#45;&#45;force-reload &#45;&#45;no-open &#45;&#45;one-page &#45;&#45;background-build &#45;&#45;port &#45;&#45;site-config &#45;&#45;dev --address
+end note
+
+note bottom of [build]
+  Builds the MarkBind website.
+  Overrides baseUrl if specified.
+  Usage: build [root] [output] &#45;&#45;baseUrl --site-config
+end note
+
+note bottom of [deploy]
+  Deploys the website to GitHub Pages.
+  Supports CI environments.
+  Usage: deploy [root] &#45;&#45;ci &#45;&#45;no-build &#45;&#45;site-config
+end note
+
+[main.js] --> [Commands] : Parses and executes commands
+[Commands] --> [init] : Calls init()
+[Commands] --> [serve] : Calls serve()
+[Commands] --> [build] : Calls build()
+[Commands] --> [deploy] : Calls deploy()
+@enduml

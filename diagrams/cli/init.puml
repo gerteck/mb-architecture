@@ -1,0 +1,45 @@
+@startuml
+title MarkBind CLI - Init Function Workflow
+
+start
+
+:Resolve root folder path;
+if (Is --convert option provided?) then (yes)
+  if (Does site.json exist in root folder?) then (yes)
+    :Log error: Cannot convert an existing MarkBind website!;
+    stop
+  else (no)
+    :Proceed with initialization;
+  endif
+else (no)
+  :Proceed with initialization;
+endif
+
+:Create Template instance with root folder and template type;
+
+partition "Initialization" {
+  :Call template.init();
+  if (Initialization successful?) then (yes)
+    :Log success: Initialization success.;
+  else (no)
+    :Log error: Failed to initialize site with given template;
+    :Set process exit code to 1;
+    stop
+  endif
+}
+
+if (Is --convert option provided?) then (yes)
+  partition "Conversion" {
+    :Log info: Converting to MarkBind website.;
+    :Call template.convert();
+    if (Conversion successful?) then (yes)
+      :Log success: Conversion success.;
+    else (no)
+      :Log error: Conversion failed;
+      :Set process exit code to 1;
+    endif
+  }
+endif
+
+stop
+@enduml
