@@ -25,6 +25,14 @@
       "headingKeywords": {}
     },
     {
+      "src": "contents/faq.md",
+      "title": "FAQ",
+      "headings": {
+        "faq": "FAQ"
+      },
+      "headingKeywords": {}
+    },
+    {
       "src": "contents/mb_CLI.md",
       "title": "MarkBind CLI",
       "headings": {
@@ -33,15 +41,21 @@
         "template-class": "Template Class",
         "template-initialization": "Template Initialization",
         "template-conversion": "Template Conversion",
-        "2-markbind-serve": "2. markbind serve"
+        "2-markbind-serve": "2. markbind serve",
+        "site-generation-and-local-server": "Site Generation and Local Server",
+        "live-preview-and-file-watching": "Live Preview and File Watching",
+        "optimized-single-page-mode-one-page": "Optimized Single-Page Mode (--one-page)",
+        "3-markbind-build": "3. markbind build",
+        "4-markbind-deploy": "4. markbind deploy",
+        "site-instance-for-cli": "Site Instance for CLI"
       },
       "headingKeywords": {}
     },
     {
-      "src": "contents/topic2.md",
-      "title": "Topic 2",
+      "src": "contents/site_class.md",
+      "title": "Site Class",
       "headings": {
-        "topic-2": "Topic 2"
+        "markbind-site": "MarkBind Site"
       },
       "headingKeywords": {}
     },
@@ -63,9 +77,9 @@
     },
     {
       "src": "index.md",
-      "title": "Home Page",
+      "title": "How does MarkBind Work",
       "headings": {
-        "hello-there": "Hello There"
+        "how-does-markbind-work": "How does MarkBind Work"
       },
       "headingKeywords": {}
     }
