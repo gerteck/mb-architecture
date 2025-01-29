@@ -25,15 +25,7 @@
       "headingKeywords": {}
     },
     {
-      "src": "contents/faq.md",
-      "title": "FAQ",
-      "headings": {
-        "faq": "FAQ"
-      },
-      "headingKeywords": {}
-    },
-    {
-      "src": "contents/mb_CLI.md",
+      "src": "contents/cli.md",
       "title": "MarkBind CLI",
       "headings": {
         "markbind-command-line-interface": "MarkBind Command Line Interface",
@@ -48,6 +40,14 @@
         "3-markbind-build": "3. markbind build",
         "4-markbind-deploy": "4. markbind deploy",
         "site-instance-for-cli": "Site Instance for CLI"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "contents/faq.md",
+      "title": "FAQ",
+      "headings": {
+        "faq": "FAQ"
       },
       "headingKeywords": {}
     },
