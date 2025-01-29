@@ -29,7 +29,11 @@
       "title": "MarkBind CLI",
       "headings": {
         "markbind-command-line-interface": "MarkBind Command Line Interface",
-        "markbind-init": "markbind Init"
+        "1-markbind-init": "1. markbind Init",
+        "template-class": "Template Class",
+        "template-initialization": "Template Initialization",
+        "template-conversion": "Template Conversion",
+        "2-markbind-serve": "2. markbind serve"
       },
       "headingKeywords": {}
     },

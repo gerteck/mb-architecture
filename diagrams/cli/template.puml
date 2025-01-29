@@ -1,0 +1,72 @@
+@startuml
+title Template Class Diagram
+
+class Template {
+  - rootPath: string
+  - templatePath: string
+  - siteConfig: SiteConfig
+  - siteConfigPath: string
+  - navigablePages: NaviagablePage[]
+
+  + Template(rootPath: string, templatePath: string)
+  + validateTemplateFromPath(): boolean
+  + generateSiteWithTemplate(): Promise<void>
+  + init(): Promise<void>
+  + convert(): Promise<void>
+  + getPageGlobPaths(page: SiteConfigPage, pagesExclude: string[]): string[]
+  + collectNavigablePages(): void
+  + addIndexPage(): Promise<void>
+  + addAboutPage(): Promise<void>
+  + addDefaultLayoutFiles(): void
+  + buildSiteNav(): string
+  + addDefaultLayoutToSiteConfig(): Promise<void>
+  + static writeToSiteConfig(config: SiteConfig, configPath: string): Promise<void>
+}
+
+class SiteConfig {
+  + pages: SiteConfigPage[]
+  + pagesExclude: string[]
+  + static readSiteConfig(rootPath: string, siteConfigPath: string): Promise<SiteConfig>
+}
+
+class SiteConfigPage {
+  + glob: string | string[]
+  + globExclude: string[]
+  + title: string
+  + layout: string
+}
+
+class VariableRenderer {
+  + static compile(template: string): TemplateRenderer
+}
+
+class fs {
+  + existsSync(path: string): boolean
+  + access(path: string): Promise<void>
+  + mkdirSync(path: string): void
+  + copy(src: string, dest: string): Promise<void>
+  + outputFile(path: string, data: string): Promise<void>
+  + readFileSync(path: string, encoding: string): string
+  + writeFileSync(path: string, data: string, encoding: string): void
+  + readJson(path: string): Promise<any>
+  + outputJson(path: string, data: any): Promise<void>
+}
+
+class fsUtil {
+  + copySyncWithOptions(src: string, dest: string, options: object): void
+  + removeExtensionPosix(path: string): string
+  + removeExtension(path: string): string
+}
+
+class logger {
+  + info(message: string): void
+  + error(message: string): void
+}
+
+Template --> SiteConfig : uses
+Template --> fs : uses
+Template --> fsUtil : uses
+Template --> VariableRenderer : uses
+Template --> logger : uses
+SiteConfig --> SiteConfigPage : contains
+@enduml
