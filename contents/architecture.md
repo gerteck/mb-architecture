@@ -1,18 +1,15 @@
-{% set title = "Architecture" %}
-<span id="title" class="d-none">{{ title }}</span>
-
 <frontmatter>
   title: Architecture
 </frontmatter>
 
-# {{ title }}
+# Architecture
 
 <div class="lead mb-5">
 
 This page provides an overview of the MarkBind's architecture.
 </div>
 
-![MarkBind Architecture Diagram](/diagrams/architecture.png)
+![MarkBind Architecture Diagram]({{baseUrl}}/diagrams/architecture.png)
 
 The above diagram shows the key classes and <popover content="The content processing flow acts on a **single** source file (`.md` / `.html`), generating output files or intermediate processing results depending on the content type.">content processing flow</popover> in MarkBind. You may note the following from these:
 
@@ -57,3 +54,15 @@ Its syntax is also the most compatible and independent of the other stages.
 2. Secondly, Markdown is **rendered before HTML**, which produces more HTML. This also allows core Markdown features (e.g. code blocks) and Markdown plugins with eccentric syntaxes to be used without having to patch the HTML parser.
 
 3. Having processed possibly conflicting Nunjucks and Markdown syntax, HTML is then processed last.
+
+
+<div class="clearfix">
+  <span class="float-start"><a class="btn btn-light" href="/index.html"><md>:far-arrow-alt-circle-left: Home</md></a>
+  </span>
+  <span class="float-end"><a class="btn btn-light" href="./mb_cli.html">
+    <md> Command Line Interface :far-arrow-alt-circle-right: </md>
+    </a>
+  </span>
+</div>
+
+<br>

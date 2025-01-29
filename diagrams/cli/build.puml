@@ -1,0 +1,27 @@
+@startuml
+start
+:Receive user inputs (root, output, options);
+if (Is baseUrl boolean?) then (Yes)
+  :Set baseUrl to empty string;
+else (No)
+  :Use provided baseUrl;
+endif
+
+:Find root folder;
+if (Root folder found?) then (Yes)
+  :Set output folder (default: _site);
+  :Create new Site instance;
+  :Generate site with baseUrl;
+  if (Build successful?) then (Yes)
+    :Log "Build success!";
+  else (No)
+    :Log error message;
+    :Set process exit code to 1;
+  endif
+else (No)
+  :Log error message;
+  :Set process exit code to 1;
+endif
+
+stop
+@enduml

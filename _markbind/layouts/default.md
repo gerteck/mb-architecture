@@ -5,11 +5,10 @@
 <header sticky>
   <navbar type="dark">
     <a slot="brand" href="{{baseUrl}}/index.html" title="Home" class="navbar-brand"><img src="{{baseUrl}}/assets/logo.png" height="70"></a>
-    <!-- <li><a href="{{baseUrl}}/contents/topic1.html" class="nav-link">Topic 1</a></li>
-    <li><a href="{{baseUrl}}/contents/topic2.html" class="nav-link">Topic 2</a></li>
-    <dropdown header="Topic 3" class="nav-link">
-      <li><a href="{{baseUrl}}/contents/topic3a.html" class="dropdown-item">Topic 3a</a></li>
-      <li><a href="{{baseUrl}}/contents/topic3b.html" class="dropdown-item">Topic 3b</a></li> -->
+    <li><a href="{{baseUrl}}/contents/architecture.html" class="nav-link">Architecture</a></li>
+    <dropdown header="Components" class="nav-link">
+      <li><a href="{{baseUrl}}/contents/mb_cli.html" class="dropdown-item">CLI</a></li>
+      <li><a href="{{baseUrl}}/contents/site_class.html" class="dropdown-item">Site</a></li> 
     </dropdown>
     <li slot="right">
       <form class="navbar-form">
@@ -29,7 +28,7 @@
 * [How does MarkBind Work :house:]({{ baseUrl }}/index.html)
 * [MarkBind Architecture]({{ baseUrl }}/contents/architecture.html)
 * [Command Line Interface]({{baseUrl}}/contents/mb_cli.html)
-* [Topic 2]({{baseUrl}}/contents/topic2.html)
+* [Site Class]({{baseUrl}}/contents/site_class.html)
 * Topic 3 :expanded:
   * [Topic 3a]({{baseUrl}}/contents/topic3a.html)
   * [Topic 3b]({{baseUrl}}/contents/topic3b.html)

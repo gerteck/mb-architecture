@@ -1,13 +1,14 @@
-<frontmatter>
-  title: Home Page
+---
+  title: How does MarkBind Work
   layout: default.md
   pageNav: 4
   pageNavTitle: "Topics"
-</frontmatter>
+---
+
 
 <br>
 
-# Hello There
+# How does MarkBind Work
 
 I thought that MarkBind's architecture page wasn't comprehensive enough. 
 
@@ -19,3 +20,12 @@ So I thought I should do a bit more to understand how MarkBind works. So, here a
 However, I hold no claims over the 100% accuracy of the diagrams shown here.
 
 Cheers! You can read it as a bedtime story instead of scrolling brainrot.
+
+<div class="clearfix">
+  <span class="float-end"><a class="btn btn-light" href="/contents/architecture.html">
+    <md> MarkBind Architecture :far-arrow-alt-circle-right: </md>
+    </a>
+  </span>
+</div>
+
+<br>

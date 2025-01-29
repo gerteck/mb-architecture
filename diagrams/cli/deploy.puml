@@ -1,0 +1,33 @@
+@startuml
+start
+:Find root folder using cliUtil;
+if (Error finding root folder?) then (Yes)
+  :Log error message;
+  stop
+else (No)
+  :Set output folder to "_site";
+endif
+
+if (--no-build flag present?) then (Yes)
+  :Deploy site directly;
+  if (Deployment successful?) then (Yes)
+    :Log deployment URL or success message;
+  else (No)
+    :Log error message;
+  endif
+else (No)
+  :Generate site;
+  if (Build successful?) then (Yes)
+    :Log "Build success!";
+    :Deploy site;
+    if (Deployment successful?) then (Yes)
+      :Log deployment URL or success message;
+    else (No)
+      :Log error message;
+    endif
+  else (No)
+    :Log error message;
+  endif
+endif
+stop
+@enduml
