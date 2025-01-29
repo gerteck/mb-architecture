@@ -57,9 +57,9 @@ Its syntax is also the most compatible and independent of the other stages.
 
 
 <div class="clearfix">
-  <span class="float-start"><a class="btn btn-light" href="/index.html"><md>:far-arrow-alt-circle-left: Home</md></a>
+  <span class="float-start"><a class="btn btn-light" href="{{ baseUrl }}/index.html"><md>:far-arrow-alt-circle-left: Home</md></a>
   </span>
-  <span class="float-end"><a class="btn btn-light" href="./mb_cli.html">
+  <span class="float-end"><a class="btn btn-light" href="./cli.html">
     <md> Command Line Interface :far-arrow-alt-circle-right: </md>
     </a>
   </span>
