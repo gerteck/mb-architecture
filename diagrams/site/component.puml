@@ -1,0 +1,24 @@
+@startuml
+title Site Component Diagram
+
+package "MarkBind Site" {
+  [Site] --> [SiteConfig]
+  [Site] --> [Page]
+  [Site] --> [VariableProcessor]
+  [Site] --> [PluginManager]
+  [Site] --> [SiteLinkManager]
+  [Site] --> [ExternalManager]
+  [Site] --> [LayoutManager]
+}
+
+package "External Libraries" {
+  [fs] --> [Site]
+  [ghpages] --> [Site]
+  [logger] --> [Site]
+}
+
+package "User Interaction" {
+  [User] --> [Site]
+}
+
+@enduml

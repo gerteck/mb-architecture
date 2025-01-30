@@ -1,0 +1,81 @@
+@startuml
+title PageConfig Class Diagram
+
+class PageConfig {
+  - asset: PageAssets
+  - baseUrlMap: Set<string>
+  - dev: boolean
+  - faviconUrl?: string
+  - frontmatterOverride: { [frontmatterName: string]: string }
+  - layout?: string
+  - layoutsAssetPath: string
+  - pluginManager: PluginManager
+  - resultPath: string
+  - rootPath: string
+  - searchable: boolean
+  - siteLinkManager: SiteLinkManager
+  - siteOutputPath: string
+  - sourcePath: string
+  - src: string
+  - title?: string
+  - template: Template
+  - variableProcessor: VariableProcessor
+  - addressablePagesSource: string[]
+  - layoutManager: LayoutManager
+
+  + PageConfig(args: {
+      asset: PageAssets,
+      baseUrlMap: Set<string>,
+      dev: boolean,
+      faviconUrl?: string,
+      frontmatterOverride?: { [frontmatterName: string]: string },
+      layout?: string,
+      layoutsAssetPath: string,
+      pluginManager: PluginManager,
+      resultPath: string,
+      rootPath: string,
+      searchable: boolean,
+      siteLinkManager: SiteLinkManager,
+      siteOutputPath: string,
+      sourcePath: string,
+      src: string,
+      title?: string,
+      template: Template,
+      variableProcessor: VariableProcessor,
+      addressablePagesSource: string[],
+      layoutManager: LayoutManager
+    })
+}
+
+class PageAssets {
+  - bootstrap: string
+  - externalScripts: string[]
+  - fontAwesome?: string
+  - glyphicons?: string
+  - octicons?: string
+  - materialIcons?: string
+  - bootstrapIcons?: string
+  - highlight: string
+  - markBindCss: string
+  - markBindJs: string
+  - pageNavCss: string
+  - siteNavCss: string
+  - bootstrapUtilityJs: string
+  - polyfillJs: string
+  - vue: string
+  - pageVueRenderJs?: string
+  - layoutUserScriptsAndStyles: string[]
+  - pluginScripts?: string[]
+  - pluginLinks?: string[]
+}
+
+PageConfig --> PageAssets : contains
+PageConfig --> PluginManager : uses
+PageConfig --> SiteLinkManager : uses
+PageConfig --> VariableProcessor : uses
+PageConfig --> LayoutManager : uses
+PageConfig --> Template : uses
+
+@enduml
+
+

@@ -1,0 +1,17 @@
+@startuml
+title Site Generate Sequence Diagram
+
+actor User
+participant Site
+participant SiteConfig
+participant Page
+participant fs
+participant ghpages
+
+User -> Site: deploy(ciTokenVar)
+Site -> Site: generate(baseUrl)
+Site -> ghpages: publish(basePath, options)
+ghpages --> Site: Deployment complete
+Site --> User: Deployment URL
+@enduml
+

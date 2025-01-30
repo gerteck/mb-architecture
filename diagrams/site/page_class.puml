@@ -1,0 +1,53 @@
+@startuml
+title Page Class Diagram
+
+class Page {
+  - pageConfig: PageConfig
+  - siteConfig: SiteConfig
+  - asset: PageAssets
+  - pageUserScriptsAndStyles: string[]
+  - frontmatter: FrontMatter
+  - headerIdMap: Record<string, number>
+  - includedFiles: Set<string>
+  - headings: Record<string, string>
+  - keywords: Record<string, string[]>
+  - navigableHeadings: Record<string, { text: string, level: number }>
+  - title?: string
+  - layout?: string
+
+  + Page(pageConfig: PageConfig, siteConfig: SiteConfig)
+  + resetState(): void
+  + isDependency(filePath: string): boolean
+  + prepareTemplateData(content: string): object
+  + filterIconAssets(preVueSsrHtml: string, postVueSsrHtml: string): void
+  + isPageNavigationSpecifierValid(): boolean
+  + generateElementSelectorForPageNav(pageNav: string | number): string | undefined
+  + collectNavigableHeadings(content: string): void
+  + collectHeadingsAndKeywords(pageContent: string): void
+  + collectHeadingsAndKeywordsInContent(content: string | Buffer, lastHeading: cheerio.Element | null, excludeHeadings: boolean, sourceTraversalStack: string[]): void
+  + processFrontmatter(frontmatter: FrontMatter): void
+  + generatePageNavHeadingHtml(): string
+  + generatePageNavTitleHtml(): string
+  + buildPageNav(content: string): string
+  + generate(externalManager: ExternalManager): Promise<void>
+  + outputPageHtml(content: string): Promise<void>
+  + static generateHeadingSelector(headingIndexingLevel: number): string
+  + static getClosestHeading($: cheerio.Root, headingsSelector: string, element: cheerio.Element): cheerio.Element | null
+}
+
+Page --> PageConfig : uses
+Page --> SiteConfig : uses
+Page --> NodeProcessor : uses
+Page --> PageSources : uses
+Page --> ExternalManager : uses
+Page --> LayoutManager : uses
+Page --> PluginManager : uses
+Page --> SiteLinkManager : uses
+Page --> VariableProcessor : uses
+Page --> cheerio : uses
+Page --> fs : uses
+Page --> logger : uses
+
+@enduml
+
+

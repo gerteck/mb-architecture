@@ -26,13 +26,11 @@
     },
     {
       "src": "contents/cli.md",
-      "title": "MarkBind CLI",
+      "title": "MarkBind Templates",
       "headings": {
         "markbind-command-line-interface": "MarkBind Command Line Interface",
+        "packages-cli-package": "packages\\cli Package",
         "1-markbind-init": "1. markbind Init",
-        "template-class": "Template Class",
-        "template-initialization": "Template Initialization",
-        "template-conversion": "Template Conversion",
         "2-markbind-serve": "2. markbind serve",
         "site-generation-and-local-server": "Site Generation and Local Server",
         "live-preview-and-file-watching": "Live Preview and File Watching",
@@ -40,6 +38,65 @@
         "3-markbind-build": "3. markbind build",
         "4-markbind-deploy": "4. markbind deploy",
         "site-instance-for-cli": "Site Instance for CLI"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "contents/core/pageVueServerRenderer.md",
+      "title": "Page Vue Server Renderer",
+      "headings": {
+        "page-vue-server-renderer": "Page Vue Server Renderer"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "contents/core/page_class.md",
+      "title": "Page Class",
+      "headings": {
+        "page-class": "Page Class",
+        "1-key-properties": "1. Key Properties",
+        "2-key-methods": "2. Key Methods",
+        "3-interactions": "3. Interactions",
+        "page-generate": "Page generate()",
+        "pageconfig": "PageConfig"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "contents/core/site_class.md",
+      "title": "Site Class & Site Config Class",
+      "headings": {
+        "site-class": "Site Class",
+        "site-component-diagram": "Site Component Diagram",
+        "site-class-diagram": "Site Class Diagram",
+        "site-generate-and-amp-rebuild": "Site.Generate &amp; Rebuild",
+        "site-deploy": "Site.Deploy",
+        "siteconfig-class-overview": "SiteConfig Class Overview",
+        "key-properties-and-functionalities": "Key Properties and Functionalities",
+        "1-base-url-handling": "1. Base URL Handling",
+        "2-pages-and-layout-configuration": "2. Pages and Layout Configuration",
+        "3-styling-configuration": "3. Styling Configuration",
+        "4-deployment-configuration": "4. Deployment Configuration",
+        "5-plugin-system": "5. Plugin System",
+        "6-intrasite-link-validation": "6. Intrasite Link Validation",
+        "7-reading-the-site-configuration-file": "7. Reading the Site Configuration File"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "contents/core/template.md",
+      "title": "MarkBind Templates",
+      "headings": {
+        "markbind-templates": "MarkBind Templates",
+        "template-class": "Template Class",
+        "template-class-diagram": "Template Class Diagram",
+        "template-initialization": "Template Initialization",
+        "template-conversion": "Template Conversion",
+        "template-sequence-diagram-init-and-convert": "Template Sequence Diagram: Init and Convert",
+        "explanation-of-the-sequence-diagram": "Explanation of the Sequence Diagram",
+        "1-init-process": "1. init Process",
+        "2-convert-process": "2. convert Process",
+        "key-interactions": "Key Interactions"
       },
       "headingKeywords": {}
     },
@@ -52,26 +109,10 @@
       "headingKeywords": {}
     },
     {
-      "src": "contents/site_class.md",
-      "title": "Site Class",
+      "src": "contents/vueMigration.md",
+      "title": "FAQ",
       "headings": {
-        "markbind-site": "MarkBind Site"
-      },
-      "headingKeywords": {}
-    },
-    {
-      "src": "contents/topic3a.md",
-      "title": "Topic 3a",
-      "headings": {
-        "topic-3a": "Topic 3a"
-      },
-      "headingKeywords": {}
-    },
-    {
-      "src": "contents/topic3b.md",
-      "title": "Topic 3b",
-      "headings": {
-        "topic-3b": "Topic 3b"
+        "vue-migration": "Vue Migration"
       },
       "headingKeywords": {}
     },
