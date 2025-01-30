@@ -1,0 +1,34 @@
+@startuml
+title Site Generate and Rebuild Sequence Diagram
+
+actor User
+participant Site
+participant SiteConfig
+participant Page
+participant VariableProcessor
+participant PluginManager
+participant SiteLinkManager
+participant ExternalManager
+participant LayoutManager
+participant fs
+
+User -> Site: generate(baseUrl)
+Site -> Site: readSiteConfig(baseUrl)
+Site -> Site: collectAddressablePages()
+Site -> Site: collectBaseUrl()
+Site -> Site: collectUserDefinedVariablesMap()
+Site -> Site: buildAssets()
+Site -> Site: generatePages()
+Site -> Page: generate(externalManager)
+Site -> Site: writeSiteData()
+Site --> User: Website generated
+
+User -> Site: rebuildAffectedSourceFiles(filePaths)
+Site -> Site: beforeSiteGenerate()
+Site -> Site: regenerateAffectedPages(filePaths)
+Site -> Page: generate(externalManager)
+Site -> Site: writeSiteData()
+Site --> User: Pages rebuilt
+
+@enduml
+

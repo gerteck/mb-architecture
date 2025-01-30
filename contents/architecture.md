@@ -1,5 +1,6 @@
 <frontmatter>
   title: Architecture
+  pageNav: 2
 </frontmatter>
 
 # Architecture

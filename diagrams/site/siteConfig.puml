@@ -1,0 +1,57 @@
+@startuml
+title siteConfig Class Diagram
+
+
+class SiteConfig {
+  - baseUrl: string
+  - enableSearch: boolean
+  - faviconPath?: string
+  - headingIndexingLevel: number
+  - style: SiteConfigStyle
+  - pages: SiteConfigPage[]
+  - pagesExclude: string[]
+  - ignore: string[]
+  - externalScripts: string[]
+  - titlePrefix: string
+  - titleSuffix: string
+  - globalOverride: Record<string, string>
+  - timeZone: string
+  - locale: string
+  - plugins: string[]
+  - pluginsContext: Record<string, any>
+  - deploy: { message?: string, repo?: string, branch?: string, baseDir?: string }
+  - intrasiteLinkValidation: { enabled: boolean }
+  - plantumlCheck: boolean
+  
+  + constructor(siteConfigJson: Record<string, any>, cliBaseUrl?: string)
+  + static readSiteConfig(rootPath: string, siteConfigPath: string, baseUrl?: string): Promise<SiteConfig>
+}
+
+class SiteConfigStyle {
+  - bootstrapTheme?: string
+  - codeTheme: "dark" | "light"
+  - codeLineNumbers: boolean
+}
+
+class SiteConfigPage {
+  - glob?: string
+  - layout?: string
+  - src?: string[]
+  - title?: string
+  - externalScripts?: string[]
+  - globExclude?: string
+  - searchable?: string | boolean
+  - frontmatter?: FrontMatter
+}
+
+class FrontMatter {
+  // Represents additional metadata
+}
+
+SiteConfig --> SiteConfigStyle
+SiteConfig --> "*" SiteConfigPage
+SiteConfigPage --> FrontMatter
+@enduml
+
+
+

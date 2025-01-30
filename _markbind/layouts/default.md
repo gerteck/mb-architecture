@@ -6,9 +6,14 @@
   <navbar type="dark">
     <a slot="brand" href="{{baseUrl}}/index.html" title="Home" class="navbar-brand"><img src="{{baseUrl}}/assets/logo.png" height="70"></a>
     <li><a href="{{baseUrl}}/contents/architecture.html" class="nav-link">Architecture</a></li>
-    <dropdown header="Components" class="nav-link">
-      <li><a href="{{baseUrl}}/contents/mb_cli.html" class="dropdown-item">CLI</a></li>
-      <li><a href="{{baseUrl}}/contents/site_class.html" class="dropdown-item">Site</a></li> 
+    <dropdown header="Command Line (CLI Library)" class="nav-link">
+      <li><a href="{{baseUrl}}/contents/cli.html" class="dropdown-item">CLI</a></li>
+    </dropdown>
+    <dropdown header="Core Library" class="nav-link">
+      <li><a href="{{baseUrl}}/contents/core/site_class.html" class="dropdown-item">Site, SiteConfig</a></li> 
+      <li><a href="{{baseUrl}}/contents/core/page_class.html" class="dropdown-item">Page, PageConfig</a></li> 
+      <li><a href="{{baseUrl}}/contents/core/pageVueServerRenderer.html" class="dropdown-item">PageVueServerRenderer</a></li> 
+      <li><a href="{{baseUrl}}/contents/core/template.html" class="dropdown-item">Project Templates</a></li> 
     </dropdown>
     <li slot="right">
       <form class="navbar-form">
@@ -26,12 +31,13 @@
     <div class="nav-component slim-scroll">
       <site-nav>
 * [How does MarkBind Work :house:]({{ baseUrl }}/index.html)
-* [MarkBind Architecture]({{ baseUrl }}/contents/architecture.html)
-* [Command Line Interface]({{baseUrl}}/contents/mb_cli.html)
-* [Site Class]({{baseUrl}}/contents/site_class.html)
-* Topic 3 :expanded:
-  * [Topic 3a]({{baseUrl}}/contents/topic3a.html)
-  * [Topic 3b]({{baseUrl}}/contents/topic3b.html)
+* [Architecture]({{ baseUrl }}/contents/architecture.html)
+* CLI Library :expanded:
+  * [Command Line Interface]({{baseUrl}}/contents/cli.html)
+* Core Library :expanded:
+  * [Site, SiteConfig Class]({{baseUrl}}/contents/core/site_class.html)
+  * [Page, PageConfig Class]({{baseUrl}}/contents/core/page_class.html) 
+  * [Project Templates]({{baseUrl}}/contents/core/template.html)
       </site-nav>
     </div>
   </nav>

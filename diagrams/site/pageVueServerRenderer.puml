@@ -1,0 +1,58 @@
+@startuml
+title PageVueServerRenderer Module Diagram
+
+package "PageVueServerRenderer" {
+  class pageVueServerRenderer {
+    + compileVuePageAndCreateScript(content: string, pageConfig: PageConfig, pageAsset: PageAssets): Promise<VueCompiler.CompiledResultFunctions>
+    + renderVuePage(compiledVuePage: VueCompiler.CompiledResultFunctions): Promise<string>
+    + updateMarkBindVueBundle(newBundle: string): Promise<void>
+    + pageEntries: Record<string, PageEntry>
+  }
+
+  class PageEntry {
+    - page: Page
+    - compiledVuePage: VueCompiler.CompiledResultFunctions
+    - pageNav: string
+  }
+
+  class VueCompiler {
+    + compileToFunctions(content: string): CompiledResultFunctions
+  }
+
+  class createRenderer {
+    + renderToString(app: Vue): string
+  }
+
+  class Vue {
+    + render(createElement: any): VNode
+    + staticRenderFns: Function[]
+    + components: Record<string, Component>
+    + directives: Record<string, Directive>
+  }
+
+  class MarkBindVue {
+    + components: Record<string, Component>
+    + directives: Record<string, Directive>
+  }
+
+  class appFactory {
+    + (): object
+  }
+
+
+  class requireFromString {
+    + (src: string, filename: string): any
+  }
+}
+
+pageVueServerRenderer --> PageEntry : contains
+pageVueServerRenderer --> VueCompiler : uses
+pageVueServerRenderer --> createRenderer : uses
+pageVueServerRenderer --> Vue : uses
+pageVueServerRenderer --> MarkBindVue : uses
+pageVueServerRenderer --> appFactory : uses
+pageVueServerRenderer --> requireFromString : uses
+
+@enduml
+
+

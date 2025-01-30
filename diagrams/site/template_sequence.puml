@@ -1,0 +1,52 @@
+@startuml
+title Template Sequence Diagram
+
+actor User
+participant Template
+participant SiteConfig
+participant fs
+participant logger
+participant VariableRenderer
+
+User -> Template: init(root, options)
+Template -> Template: validateTemplateFromPath()
+alt Validation Successful
+  Template -> fs: access(rootPath)
+  fs --> Template: Success
+  Template -> fs: mkdirSync(rootPath) (if needed)
+  Template -> fsUtil: copySyncWithOptions(templatePath, rootPath)
+  fsUtil --> Template: Success
+  Template --> User: Initialization complete
+else Validation Failed
+  Template --> User: Error: Template validation failed
+end
+
+User -> Template: convert()
+Template -> SiteConfig: readSiteConfig(rootPath, siteConfigPath)
+SiteConfig --> Template: siteConfig
+Template -> Template: collectNavigablePages()
+Template -> Template: addIndexPage()
+Template -> fs: copy(README.md or Home.md, index.md)
+fs --> Template: Success
+Template -> Template: addAboutPage()
+Template -> fs: outputFile(about.md, ABOUT_MARKDOWN_DEFAULT)
+fs --> Template: Success
+Template -> Template: addDefaultLayoutFiles()
+Template -> fs: readFileSync(wikiFooterPath)
+fs --> Template: footer content
+Template -> fs: readFileSync(wikiSiteNavPath)
+fs --> Template: siteNav content
+Template -> VariableRenderer: compile(siteConvertLayout.njk)
+VariableRenderer --> Template: convertedLayoutTemplate
+Template -> Template: render(footer, siteNav)
+Template -> fs: writeFileSync(layoutOutputPath, renderedLayout)
+fs --> Template: Success
+Template -> Template: addDefaultLayoutToSiteConfig()
+Template -> fs: readJson(configPath)
+fs --> Template: config
+Template -> Template: writeToSiteConfig(config, configPath)
+Template -> fs: outputJson(configPath, config)
+fs --> Template: Success
+Template --> User: Conversion complete
+@enduml
+

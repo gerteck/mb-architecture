@@ -1,0 +1,42 @@
+@startuml
+title Page.generate() Sequence Diagram
+
+actor User
+participant Page
+participant NodeProcessor
+participant PageSources
+participant VariableProcessor
+participant PluginManager
+participant LayoutManager
+participant ExternalManager
+participant pageVueServerRenderer
+participant fs
+
+User -> Page: generate(externalManager)
+Page -> Page: resetState()
+Page -> VariableProcessor: renderWithSiteVariables(sourcePath, pageSources)
+VariableProcessor --> Page: content
+Page -> NodeProcessor: process(sourcePath, content)
+NodeProcessor --> Page: processedContent
+Page -> Page: processFrontmatter(nodeProcessor.frontmatter)
+Page -> PluginManager: postRender(frontmatter, processedContent)
+PluginManager --> Page: postProcessedContent
+Page -> PluginManager: collectPluginPageNjkAssets(frontmatter, postProcessedContent, asset)
+Page -> LayoutManager: generateLayoutIfNeeded(layout)
+Page -> Page: buildPageNav(postProcessedContent)
+Page -> LayoutManager: combineLayoutWithPage(layout, postProcessedContent, pageNav, includedFiles)
+LayoutManager --> Page: combinedContent
+Page -> ExternalManager: generateDependencies(dynamicIncludeSrc, includedFiles, pageUserScriptsAndStyles)
+Page -> Page: collectHeadingsAndKeywords(postProcessedContent)
+Page -> pageVueServerRenderer: compileVuePageAndCreateScript(combinedContent, pageConfig, asset)
+pageVueServerRenderer --> Page: compiledVuePage
+Page -> pageVueServerRenderer: renderVuePage(compiledVuePage)
+pageVueServerRenderer --> Page: vueSsrHtml
+Page -> Page: filterIconAssets(combinedContent, vueSsrHtml)
+Page -> Page: outputPageHtml(vueSsrHtml)
+Page -> fs: outputFile(resultPath, outputTemplateHTML)
+fs --> Page: Success
+Page --> User: Page generated
+@enduml
+
+

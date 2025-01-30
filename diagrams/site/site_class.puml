@@ -1,0 +1,85 @@
+@startuml
+title Site Class Diagram
+
+class Site {
+  - dev: boolean
+  - rootPath: string
+  - outputPath: string
+  - tempPath: string
+  - siteAssetsDestPath: string
+  - pageTemplatePath: string
+  - pageTemplate: NunjucksTemplate
+  - pages: Page[]
+  - addressablePages: AddressablePage[]
+  - addressablePagesSource: string[]
+  - baseUrlMap: Set<string>
+  - forceReload: boolean
+  - siteConfig: SiteConfig
+  - siteConfigPath: string
+  - variableProcessor: VariableProcessor
+  - pluginManager: PluginManager
+  - siteLinkManager: SiteLinkManager
+  - backgroundBuildMode: string | boolean
+  - stopGenerationTimeThreshold: Date
+  - postBackgroundBuildFunc: () => void
+  - onePagePath: string
+  - currentPageViewed: string
+  - currentOpenedPages: string[]
+  - toRebuild: Set<string>
+  - externalManager: ExternalManager
+  - layoutManager: LayoutManager
+
+  + Site(rootPath: string, outputPath: string, onePagePath: string, forceReload: boolean, siteConfigPath: string, dev: any, backgroundBuildMode: boolean, postBackgroundBuildFunc: () => void)
+  + readSiteConfig(baseUrl?: string): Promise<SiteConfig>
+  + generate(baseUrl?: string): Promise<void>
+  + deploy(ciTokenVar: string | boolean): Promise<string>
+  + rebuildAffectedSourceFiles(filePaths: string | string[]): Promise<void>
+  + rebuildPagesBeingViewed(normalizedUrls: string[]): Promise<void>
+  + backgroundBuildNotViewedFiles(): Promise<void>
+  + buildAssets(): Promise<void>
+  + removeAsset(filePaths: string | string[]): Promise<void>
+  + writeSiteData(verbose?: boolean): Promise<void>
+  + copyBootstrapTheme(isRebuild: boolean): Promise<void>
+  + copyFontAwesomeAsset(): Promise<void>
+  + copyOcticonsAsset(): Promise<void>
+  + copyMaterialIconsAsset(): Promise<void>
+  + copyCoreWebAsset(): Promise<void>
+  + copyBootstrapIconsAsset(): Promise<void>
+  + generatePages(): Promise<void>
+  + generateLandingPage(): Promise<void>
+  + regenerateAffectedPages(filePaths: string[]): Promise<void>
+  + rebuildSourceFiles(): Promise<void>
+  + reloadSiteConfig(): Promise<void>
+  + handlePageReload(oldAddressablePages: AddressablePage[], oldPagesSrc: string[], oldSiteConfig: SiteConfig): Promise<void>
+  + handleIgnoreReload(oldIgnore: string[]): Promise<void>
+  + handleStyleReload(oldStyle: SiteConfigStyle): Promise<void>
+  + isDependencyOfPage(filePath: string): boolean
+  + isFilepathAPage(filePath: string): boolean
+  + getFavIconUrl(): string | undefined
+  + mapAddressablePagesToPages(addressablePages: AddressablePage[], faviconUrl: string | undefined): void
+  + createNewPage(page: AddressablePage, faviconUrl: string | undefined): Page
+  + stopOngoingBuilds(): void
+  + runPageGenerationTasks(pageGenerationTasks: PageGenerationTask[]): Promise<boolean>
+  + generatePagesSequential(pages: Page[], progressBar: any): Promise<boolean>
+  + generatePagesAsyncThrottled(pages: Page[], progressBar: any): Promise<boolean>
+  + collectAddressablePages(): void
+  + collectBaseUrl(): void
+  + collectUserDefinedVariablesMap(): void
+  + collectUserDefinedVariablesMapIfNeeded(filePaths: string[]): boolean
+  + buildManagers(): void
+  + updatePages(pagesToUpdate: AddressablePage[]): void
+  + _setTimestampVariable(): void
+}
+
+Site --> SiteConfig : uses
+Site --> Page : contains
+Site --> VariableProcessor : uses
+Site --> PluginManager : uses
+Site --> SiteLinkManager : uses
+Site --> ExternalManager : uses
+Site --> LayoutManager : uses
+Site --> fs : uses
+Site --> ghpages : uses
+Site --> logger : uses
+
+@enduml

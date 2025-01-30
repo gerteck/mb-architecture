@@ -22,8 +22,8 @@ However, I hold no claims over the 100% accuracy of the diagrams shown here.
 Cheers! You can read it as a bedtime story instead of scrolling brainrot.
 
 <div class="clearfix">
-  <span class="float-end"><a class="btn btn-light" href="/contents/architecture.html">
-    <md> MarkBind Architecture :far-arrow-alt-circle-right: </md>
+  <span class="float-end"><a class="btn btn-light" href="{{baseUrl}}/contents/architecture.html">
+    <md> Architecture :far-arrow-alt-circle-right: </md>
     </a>
   </span>
 </div>
