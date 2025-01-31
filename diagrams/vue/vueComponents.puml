@@ -1,0 +1,52 @@
+@startuml
+title Vue Plugin Component Diagram
+
+package "Vue Plugin" {
+  [plugin] --> [components] : registers
+  [plugin] --> [directives] : registers
+
+  package "Components" {
+    [box]
+    [breadcrumb]
+    [dropdown]
+    [navbar]
+    [panel]
+    [annotate]
+    [aPoint]
+    [pic]
+    [quiz]
+    [question]
+    [qOption]
+    [retriever]
+    [searchbar]
+    [tab]
+    [tabGroup]
+    [tabs]
+    [thumbnail]
+    [trigger]
+    [siteNav]
+    [submenu]
+    [siteNavButton]
+    [pageNavButton]
+    [overlay]
+    [overlaySource]
+    [popover]
+    [tooltip]
+    [modal]
+    [VPopover]
+    [VTooltip]
+    [scrollTopButton]
+  }
+
+  package "Directives" {
+    [closeable]
+  }
+}
+
+[plugin] --> [Vue] : installs into
+[Vue] --> [components] : uses
+[Vue] --> [directives] : uses
+
+@enduml
+
+

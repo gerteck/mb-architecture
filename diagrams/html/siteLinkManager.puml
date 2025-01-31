@@ -1,0 +1,73 @@
+@startuml
+' Define classes and relationships
+
+class SiteLinkManager {
+  - config: NodeProcessorConfig
+  - intralinkCollection: Map<string, Set<string>>
+  - filePathToHashesMap: Map<string, Set<string>>
+  + constructor(config: NodeProcessorConfig)
+  + _addToCollection(resourcePath: string, cwf: string)
+  + validateAllIntralinks()
+  + collectIntraLinkToValidate(node: MbNode, cwf: string): string
+  + maintainFilePathToHashesMap(node: MbNode, cwf: string)
+  + maintainHashesForInclude(node: MbNode, cwf: string)
+}
+
+class NodeProcessorConfig {
+  + rootPath: string
+  + intrasiteLinkValidation: { enabled: boolean }
+}
+
+class MbNode {
+  + name: string
+  + attribs: { [key: string]: string }
+  + children: MbNode[]
+}
+
+class linkProcessor {
+  + validateIntraLink(resourcePath: string, cwf: string, config: NodeProcessorConfig, filePathToHashesMap: Map<string, Set<string>>)
+  + getDefaultTagsResourcePath(node: MbNode): string
+  + isIntraLink(resourcePath: string): boolean
+}
+
+class headerProcessor {
+  + setHeadingId(node: MbNode, config: NodeProcessorConfig, force: boolean)
+}
+
+' Relationships
+SiteLinkManager --> NodeProcessorConfig : uses
+SiteLinkManager --> MbNode : processes
+SiteLinkManager --> linkProcessor : uses
+SiteLinkManager --> headerProcessor : uses
+SiteLinkManager --> "Map<string, Set<string>>" : intralinkCollection
+SiteLinkManager --> "Map<string, Set<string>>" : filePathToHashesMap
+
+' Notes for clarity
+note top of SiteLinkManager
+  Manages intra-site links and validates them.
+  Maintains mappings of resource paths and hashes.
+end note
+
+note top of NodeProcessorConfig
+  Configuration for node processing,
+  including root path and validation settings.
+end note
+
+note top of MbNode
+  Represents a node in the document tree,
+  with attributes and children.
+end note
+
+note top of linkProcessor
+  Provides utility functions for
+  link validation and processing.
+end note
+
+note top of headerProcessor
+  Provides utility functions for
+  setting heading IDs.
+end note
+
+@enduml
+
+

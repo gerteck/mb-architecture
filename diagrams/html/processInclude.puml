@@ -1,0 +1,33 @@
+@startuml
+title Include Processing Flow
+
+actor User
+
+participant "Main System" as System
+participant "fsUtil" as FS
+participant "Logger" as Logger
+participant "Variable Processor" as VP
+participant "Markdown Renderer" as MD
+participant "Child Context" as Context
+participant "Site Link Manager" as SLManager
+
+User -> System : Request to process include (processInclude)
+System -> FS : Check if file exists (_checkAndWarnFileExists)
+FS -> FS : File exists check
+FS --> System : Return file existence status
+System -> Logger : Log missing file (if applicable)
+System -> VP : Render include file (renderIncludeFile)
+VP --> System : Return rendered content
+System -> MD : Render Markdown (renderMd / renderMdInline)
+MD --> System : Return rendered content
+System -> Context : Check for cyclic references (hasExceededMaxCallstackSize)
+Context -> Context : Verify callstack
+Context --> System : Return context or error
+System -> SLManager : Maintain hash references for include (maintainHashesForInclude)
+SLManager --> System : Update site link references
+System -> System : Append content to node
+System --> User : Return processed content
+
+@enduml
+
+

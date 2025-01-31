@@ -13,7 +13,21 @@
       <li><a href="{{baseUrl}}/contents/core/site_class.html" class="dropdown-item">Site, SiteConfig</a></li> 
       <li><a href="{{baseUrl}}/contents/core/page_class.html" class="dropdown-item">Page, PageConfig</a></li> 
       <li><a href="{{baseUrl}}/contents/core/pageVueServerRenderer.html" class="dropdown-item">PageVueServerRenderer</a></li> 
+      <li><a href="{{baseUrl}}/contents/core/layout.html" class="dropdown-item">Layout, LayoutManager</a></li> 
+      <li><a href="{{baseUrl}}/contents/core/variableProcessorRenderer.html" class="dropdown-item">VariableProcessor/Renderer</a></li> 
+      <li><a href="{{baseUrl}}/contents/core/external.html" class="dropdown-item">ExternalManager, External</a></li> 
       <li><a href="{{baseUrl}}/contents/core/template.html" class="dropdown-item">Project Templates</a></li> 
+      <dropdown header="Process to html" class="nav-link">
+        <li><a href="{{baseUrl}}/contents/core/html/nodeProcessor.html" class="dropdown-item">NodeProcessor</a></li> 
+        <li><a href="{{baseUrl}}/contents/core/html/otherProcessors.html" class="dropdown-item">otherProcessors</a></li> 
+        <li><a href="{{baseUrl}}/contents/core/html/vueSlotSyntaxProcessor.html" class="dropdown-item">vueSlotSyntaxProcessor</a></li> 
+      </dropdown>
+    </dropdown>
+    <dropdown header="Core-Web Library" class="nav-link">
+      <li><a href="{{baseUrl}}/contents/core-web/core-web.html" class="dropdown-item">core-web</a></li>
+    </dropdown>
+    <dropdown header="Vue-Components Library" class="nav-link">
+      <li><a href="{{baseUrl}}/contents/vue/vueComponents.html" class="dropdown-item">vue-components</a></li>
     </dropdown>
     <li slot="right">
       <form class="navbar-form">
@@ -37,7 +51,20 @@
 * Core Library :expanded:
   * [Site, SiteConfig Class]({{baseUrl}}/contents/core/site_class.html)
   * [Page, PageConfig Class]({{baseUrl}}/contents/core/page_class.html) 
+  * [PageVueServerRenderer]({{baseUrl}}/contents/core/pageVueServerRenderer.html) 
+  * [Layout, Layout Manager Classes]({{baseUrl}}/contents/core/layout.html) 
+  * [VariableProcessor/Renderer Classes]({{baseUrl}}/contents/core/variableProcessorRenderer.html) 
+  * html Library :expanded:
+    * [NodeProcessor]({{baseUrl}}/contents/core/html/nodeProcessor.html) 
+    * [Other Processors]({{baseUrl}}/contents/core/html/otherProcessors.html)
+    * [VueSlotSyntaxProcessor]({{baseUrl}}/contents/core/html/vueSlotSyntaxProcessor.html)  
+  * [ExternalManager, External Classes]({{baseUrl}}/contents/core/external.html) 
   * [Project Templates]({{baseUrl}}/contents/core/template.html)
+  * [Lib]({{baseUrl}}/contents/core/lib.html) 
+* Core Web Library :expanded:
+  * [core-web]({{baseUrl}}/contents/core-web/core-web.html)
+* Vue Components :expanded:
+  * [Vue-components]({{baseUrl}}/contents/vue/vueComponents.html)
       </site-nav>
     </div>
   </nav>

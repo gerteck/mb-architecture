@@ -1,0 +1,22 @@
+@startuml
+
+class Context {
+  +cwf: string
+  +callStack: string[]
+  +variables: Record<string, string>
+  +processingOptions: { omitFrontmatter?: boolean }
+  +addCwfToCallstack(cwf: string)
+  +hasExceededMaxCallstackSize(): boolean
+  +clone(): Context
+}
+
+class CyclicReferenceError {
+  +MAX_RECURSIVE_DEPTH: number
+}
+
+Context --> CyclicReferenceError : uses for max depth check
+
+@enduml
+
+
+

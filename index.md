@@ -19,7 +19,7 @@ So I thought I should do a bit more to understand how MarkBind works. So, here a
 
 However, I hold no claims over the 100% accuracy of the diagrams shown here.
 
-Cheers! You can read it as a bedtime story instead of scrolling brainrot.
+Cheers! You can read it as a bedtime story (since you might fall asleep).
 
 <div class="clearfix">
   <span class="float-end"><a class="btn btn-light" href="{{baseUrl}}/contents/architecture.html">

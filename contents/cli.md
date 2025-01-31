@@ -91,7 +91,7 @@ Additionally, see [Site Class](./core/site_class.md) for more details on the mec
 
 <panel header="Activity Diagram - site.generate">
 
-<puml src="{{ baseUrl }}/diagrams/site/generate.puml" width=900 />
+<puml src="{{ baseUrl }}/diagrams/site/site_generate.puml" width=900 />
 
 </panel>
 

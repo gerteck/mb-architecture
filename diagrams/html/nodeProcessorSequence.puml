@@ -1,0 +1,38 @@
+@startuml
+participant "User/PageBuilder" as User
+participant "NodeProcessor" as NP
+participant "MarkdownProcessor" as MP
+participant "DOM Utilities" as DOM
+
+User -> NP: process(file, content, cwf, extraVariables)
+NP -> NP: _processFrontmatter(node, context)
+NP -> NP: traverse(dom, context)
+NP -> NP: processNode(node, context)
+
+alt Node is Markdown
+    NP -> MP: renderMd(content)
+    MP -> NP: Return rendered HTML
+end
+
+alt Node is HTML
+    NP -> DOM: Parse content
+    DOM -> NP: Return parsed DOM tree
+end
+
+loop Traverse Nodes
+    NP -> NP: processNode(node, context)
+    alt Node has Include
+        NP -> NP: processInclude(node, context)
+    else Node has Panel
+        NP -> NP: processPanelSrc(node, context)
+    else Node has Code Block
+        NP -> NP: highlightCodeBlock(node)
+    end
+end
+
+NP -> NP: postProcessNode(node)
+NP -> User: Return processed content
+
+@enduml
+
+

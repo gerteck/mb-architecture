@@ -1,0 +1,34 @@
+@startuml
+
+class FootnoteProcessor {
+    - renderedFootnotes: string[]
+    + constructor()
+    + processMbTempFootnotes(node: MbNode): void
+    + combineFootnotes(processNode: (nd: MbNode) => any): string
+}
+
+class MbNode {
+    // Representing the basic structure of MbNode for context.
+    + attribs: Map<String, String>
+    + children: List<MbNode>
+}
+
+class cheerio {
+    + load(html: string): cheerio.Cheerio
+    + html(): string
+    + remove(): void
+    + append(content: string): void
+}
+
+class MARKBIND_FOOTNOTE_POPOVER_ID_PREFIX {
+    // Placeholder for the constant string used in footnote popover ID creation.
+}
+
+FootnoteProcessor --> "1..*" MbNode : processes >
+FootnoteProcessor ..> cheerio : uses >
+FootnoteProcessor ..> MARKBIND_FOOTNOTE_POPOVER_ID_PREFIX : uses >
+
+@enduml
+
+
+

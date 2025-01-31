@@ -1,0 +1,29 @@
+@startuml
+title External.resolveDependency() Sequence Diagram
+
+actor User
+participant External
+participant NodeProcessor
+participant VariableProcessor
+participant PluginManager
+participant PageSources
+participant ExternalManager
+participant fs
+
+User -> External: resolveDependency(asIfAtFilePath, resultPath, config)
+External -> External: Initialize fileConfig
+External -> VariableProcessor: renderWithSiteVariables(sourceFilePath, pageSources)
+VariableProcessor --> External: nunjucksProcessed
+External -> NodeProcessor: process(sourceFilePath, nunjucksProcessed, asIfAtFilePath)
+NodeProcessor --> External: mdHtmlProcessed
+External -> PluginManager: postRender(nodeProcessor.frontmatter, mdHtmlProcessed)
+PluginManager --> External: pluginPostRendered
+External -> fs: outputFile(resultPath, outputContentHTML)
+fs --> External: Success
+External -> PageSources: addAllToSet(includedFiles)
+External -> ExternalManager: generateDependencies(pageSources.getDynamicIncludeSrc(), includedFiles, userScriptsAndStyles)
+ExternalManager --> External: Success
+External --> User: Dependency resolved
+@enduml
+
+
