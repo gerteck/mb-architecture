@@ -49,7 +49,7 @@ The FootnoteProcessor class is designed to handle the processing of footnotes wi
 
 <br>
 
-<puml src="{{ baseUrl }}/diagrams/html/footNoteProcessor.puml" width=800 />
+<puml src="{{ baseUrl }}/diagrams/html/footnoteProcessor.puml" width=800 />
 
 <br><br>
 
