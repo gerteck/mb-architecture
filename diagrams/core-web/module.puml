@@ -1,0 +1,65 @@
+@startuml
+title @markbind/core-web Module Diagram
+
+package "@markbind/core-web" {
+  [index.js] --> [VueCommonAppFactory.js] : imports
+  [index.js] --> [styles/index.css] : imports
+  [index.js] --> [print.js] : imports
+
+  package "Vue Components" {
+    [MarkBindVue] 
+    note right of MarkBindVue
+      - Vue component integration
+      - Plugin system for Vue
+    end note
+
+    [appFactory] 
+    note right of appFactory
+      - Creates a Vue app instance
+      - Sets up necessary app configurations
+    end note
+  }
+
+  package "Webpack Configuration" {
+    [webpack.build.js] 
+    note right of webpack.build.js
+      - Merges client & server config
+      - Handles build steps
+    end note
+
+    [webpack.client.config.js] 
+    note right of webpack.client.config.js
+      - Client-specific webpack settings
+      - Excludes node modules from bundle
+    end note
+
+    [webpack.server.config.js] 
+    note right of webpack.server.config.js
+      - Server-specific webpack settings
+      - Configures SSR rendering
+    end note
+
+    [webpack.common.js] 
+    note right of webpack.common.js
+      - Shared settings for client & server
+    end note
+  }
+
+
+}
+
+[index.js] -u-> [Vue] : uses
+[index.js] -u-> [window] : interacts with
+[index.js] -u-> [document] : interacts with
+
+[VueCommonAppFactory.js] --> [MarkBindVue] : exports
+[VueCommonAppFactory.js] --> [appFactory] : exports
+
+[webpack.build.js] --> [webpack.client.config.js] : merges
+[webpack.build.js] --> [webpack.server.config.js] : merges
+[webpack.build.js] --> [webpack.common.js] : merges
+
+@enduml
+
+
+

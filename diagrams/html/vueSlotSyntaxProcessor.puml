@@ -1,0 +1,80 @@
+@startuml
+' Define classes and relationships
+
+package "vueSlotSyntaxProcessor" {
+  class getVslotShorthandName {
+    + getVslotShorthandName(node: NodeOrText): string
+  }
+
+  class shiftSlotNodeDeeper {
+    + shiftSlotNodeDeeper(node: MbNode): void
+  }
+
+  class transformOldSlotSyntax {
+    + transformOldSlotSyntax(node: MbNode): void
+  }
+}
+
+class NodeOrText {
+  + attribs: { [key: string]: string }
+}
+
+class MbNode {
+  + name: string
+  + attribs: { [key: string]: string }
+  + children: MbNode[]
+  + parent: MbNode
+}
+
+class parseHTML {
+  + parseHTML(html: string): MbNode[]
+}
+
+class lodash {
+  + has(obj: object, key: string): boolean
+  + find(arr: any[], predicate: Function): any
+}
+
+' Relationships
+getVslotShorthandName --> NodeOrText : processes
+shiftSlotNodeDeeper --> MbNode : processes
+transformOldSlotSyntax --> MbNode : processes
+shiftSlotNodeDeeper --> parseHTML : uses
+getVslotShorthandName --> lodash : uses
+transformOldSlotSyntax --> lodash : uses
+
+' Notes for clarity
+note top of getVslotShorthandName
+  Extracts Vue slot shorthand name
+  (e.g., "#header" → "header").
+end note
+
+note top of shiftSlotNodeDeeper
+  Wraps slot nodes in <template>
+  to ensure proper nesting.
+end note
+
+note top of transformOldSlotSyntax
+  Converts deprecated slot syntax
+  (slot="name") to shorthand (#name).
+end note
+
+note top of MbNode
+  Represents a node in the document tree,
+  with attributes, children, and parent.
+end note
+
+note top of parseHTML
+  Parses an HTML string into
+  an array of MbNode objects.
+end note
+
+note top of lodash
+  Utility functions for checking
+  object properties and finding
+  elements in arrays.
+end note
+
+@enduml
+
+

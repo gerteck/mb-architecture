@@ -1,0 +1,91 @@
+@startuml
+title ExternalManager and External Class Diagram
+
+package "ExternalManager" {
+  class ExternalManager {
+    - config: ExternalManagerConfig
+    - builtFiles: Record<string, Promise<External>>
+
+    + ExternalManager(cfg: ExternalManagerConfig)
+    + reset(): void
+    + generateDependencies(dependencies: DynamicSrc[], includedFiles: Set<string>, userScriptsAndStyles: string[]): Promise<void>
+  }
+
+  class ExternalManagerConfig {
+    - variableProcessor: VariableProcessor
+    - siteLinkManager: SiteLinkManager
+    - pluginManager: PluginManager
+    - baseUrl: string
+    - ignore: string[]
+    - intrasiteLinkValidation: boolean
+    - codeLineNumbers: boolean
+    - baseUrlMap: Set<string>
+    - rootPath: string
+    - addressablePagesSource: string[]
+    - outputPath: string
+    - plantumlCheck: boolean
+  }
+
+}
+
+package "External" {
+  class External {
+    - externalManager: ExternalManager
+    - sourceFilePath: string
+    - includedFiles: Set<string>
+    - userScriptsAndStyles: string[]
+
+    + External(em: ExternalManager, srcFilePath: string, userScriptsAndStyles: string[])
+    + resolveDependency(asIfAtFilePath: string, resultPath: string, config: ExternalManagerConfig): Promise<External>
+  }
+}
+
+package "Dependencies" {
+  class NodeProcessor {
+    + process(sourceFilePath: string, content: string, asIfAtFilePath?: string): Promise<string>
+  }
+
+  class VariableProcessor {
+    + renderWithSiteVariables(sourceFilePath: string, pageSources: PageSources): string
+  }
+
+  class PluginManager {
+    + postRender(frontmatter: FrontMatter, content: string): string
+  }
+
+  class SiteLinkManager {
+    + validateAllIntralinks(): void
+  }
+
+  class PageSources {
+    + addAllToSet(set: Set<string>): void
+    + getDynamicIncludeSrc(): DynamicSrc[]
+  }
+
+  class fs {
+    + outputFile(filePath: string, content: string): Promise<void>
+  }
+}
+
+ExternalManager --> ExternalManagerConfig : contains
+ExternalManager --> External : manages
+ExternalManager --> NodeProcessor : uses
+ExternalManager --> VariableProcessor : uses
+ExternalManager --> PluginManager : uses
+ExternalManager --> SiteLinkManager : uses
+ExternalManager --> PageSources : uses
+ExternalManager --> fs : uses
+
+External --> ExternalManager : interacts with
+External --> NodeProcessor : uses
+External --> VariableProcessor : uses
+External --> PluginManager : uses
+External --> SiteLinkManager : uses
+External --> PageSources : uses
+External --> fs : uses
+
+ExternalManager -down[hidden]- External
+
+@enduml
+
+

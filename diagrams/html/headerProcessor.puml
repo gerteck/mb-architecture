@@ -1,0 +1,59 @@
+@startuml
+
+class MbNode {
+    + attribs: Map<String, String>
+    + children: List<MbNode>
+    + name: String
+}
+
+class NodeProcessorConfig {
+    + headerIdMap: Map<String, Integer>
+}
+
+class NodeOrText {
+    // Placeholder for representing the node or text type.
+}
+
+class cheerio {
+    + text(): string
+    + remove(): void
+}
+
+class slugify {
+    + slugify(text: string, options: Object): string
+}
+
+class has {
+    + has(obj: Object, path: String): boolean
+}
+
+class getVslotShorthandName {
+    + getVslotShorthandName(node: MbNode): string
+}
+
+class setHeadingId {
+    + setHeadingId(node: MbNode, config: NodeProcessorConfig, addHeaderCount: boolean): void
+}
+
+class _findHeaderElement {
+    + _findHeaderElement(node: MbNode): NodeOrText
+}
+
+class assignPanelId {
+    + assignPanelId(node: MbNode): void
+}
+
+setHeadingId ..> cheerio : uses >
+setHeadingId ..> slugify : uses >
+setHeadingId ..> has : uses >
+setHeadingId --> "1" NodeProcessorConfig : uses >
+setHeadingId --> "1" MbNode : operates on >
+_findHeaderElement --> "1" MbNode : operates on >
+assignPanelId --> "1" MbNode : operates on >
+assignPanelId ..> getVslotShorthandName : uses >
+assignPanelId ..> _findHeaderElement : uses >
+
+@enduml
+
+
+

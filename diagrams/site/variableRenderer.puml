@@ -1,0 +1,40 @@
+@startuml
+class VariableRenderer {
+  - siteRootPath: string
+  - pageSources: PageSources
+  - nj: Environment
+
+  + renderString(content: string, variables: Record<string, any>, pageSources: PageSources): string
+  + renderFile(contentFilePath: string, variables: Record<string, any>, pageSources: PageSources): string
+  + invalidateCache(): void
+  + static compile(templatePath: string): Template
+}
+
+class Environment {
+  + renderString(content: string, variables: Record<string, any>): string
+  + render(name: string, variables: Record<string, any>): string
+  + addFilter(name: string, filterFunction: Function): Environment
+  + addExtension(name: string, extension: Object): Environment
+  + on(event: string, callback: Function): void
+}
+
+class PageSources {
+  + staticIncludeSrc: { to: string }[]
+}
+
+class SetExternalExtension {
+  + new(siteRootPath: string, nj: Environment)
+}
+
+class fsUtil {
+  + ensurePosix(filePath: string): string
+}
+
+VariableRenderer --> Environment
+VariableRenderer --> PageSources
+VariableRenderer --> SetExternalExtension
+VariableRenderer --> fsUtil
+@enduml
+
+
+

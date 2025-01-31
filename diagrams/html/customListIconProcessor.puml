@@ -1,0 +1,33 @@
+@startuml
+
+actor "User" as User
+entity "IconAttributes" as IconAttributes
+entity "MbNode" as MbNode
+entity "TextManager" as TextsManager
+entity "Cheerio" as Cheerio
+entity "EmojiDictionary" as EmojiDictionary
+
+User -> "processUlNode" : calls with node and renderMdInline
+"processUlNode" -> MbNode : uses as input
+"processUlNode" -> TextsManager : manages texts
+"processUlNode" -> IconAttributes : stores icon attributes
+"processUlNode" -> "getIconAttributes" : retrieves icon attributes
+"getIconAttributes" -> MbNode : accesses node attributes
+"getIconAttributes" -> IconAttributes : returns icon attributes
+"processUlNode" -> Cheerio : creates HTML elements (icon span, text span)
+"createIconSpan" -> EmojiDictionary : checks if icon is emoji
+"createTextSpan" -> Cheerio : creates text span
+
+"IconAttributes" --> "MbNode" : contains icon info
+"MbNode" --> "Cheerio" : uses for manipulation
+"MbNode" --> TextsManager : has texts to manage
+
+note right of "processUlNode"
+  Traverses the list and processes
+  icon and text attributes for each item.
+end note
+
+@enduml
+
+
+

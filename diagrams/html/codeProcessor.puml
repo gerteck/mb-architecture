@@ -1,0 +1,25 @@
+@startuml
+participant "User/PageBuilder" as User
+participant "highlightCodeBlock" as HCB
+participant "traverseLinePart" as TLP
+participant "setCodeLineNumbers" as SCLN
+participant "Cheerio" as DOM
+participant "Markdown Utils" as MU
+
+User -> HCB: highlightCodeBlock(node)
+HCB -> HCB: Find 'code' node inside 'pre'
+HCB -> HCB: Check for 'hl-data' attribute in each line
+HCB -> TLP: traverseLinePart(lineNode, start, end)
+TLP -> MU: unescapeHtml(node.data)
+TLP -> TLP: Process text and tag nodes
+TLP -> DOM: Wrap text nodes with <span class="highlighted">
+TLP -> HCB: Return processed node
+
+User -> SCLN: setCodeLineNumbers(node, showCodeLineNumbers)
+SCLN -> SCLN: Check existing class attributes
+SCLN -> SCLN: Append 'line-numbers' if needed
+
+@enduml
+
+
+

@@ -1,0 +1,63 @@
+@startuml
+title VariableProcessor Class Diagram
+class VariableProcessor {
+  - userDefinedVariablesMap: { [rootPath: string]: Record<string, any> }
+  - variableRendererMap: { [rootPath: string]: VariableRenderer }
+  - rootPath: string
+  - baseUrlMap: Set<string>
+
+  + invalidateCache(): void
+  + addUserDefinedVariable(site: string, name: string, value: any): void
+  + renderAndAddUserDefinedVariable(site: string, name: string | undefined, value: any): void
+  + addUserDefinedVariableForAllSites(name: string, value: any): void
+  + resetUserDefinedVariablesMap(): void
+  - getParentSiteVariables(contentFilePath: string): Record<string, any>
+  + renderWithSiteVariables(contentFilePath: string, pageSources: PageSources, lowerPriorityVariables?: Record<string, any>): string
+  - extractIncludeInlineVariables(includeElement: MbNode): Record<string, any>
+  - extractIncludeChildElementVariables(includeElement: MbNode): Record<string, string>
+  - extractIncludeVariables(includeElement: MbNode): Record<string, any>
+  + renderIncludeFile(filePath: string, pageSources: PageSources, node: MbNode, context: Context, asIfAt: string): { nunjucksProcessed: string, childContext: Context }
+}
+
+class VariableRenderer {
+  + renderString(value: string, variables: Record<string, any>, pageSources: PageSources): string
+  + renderFile(filePath: string, variables: Record<string, any>, pageSources: PageSources): string
+  + invalidateCache(): void
+}
+
+class PageSources {
+  + addAllToSet(): void
+  + getDynamicIncludeSrc(): string
+}
+
+class Context {
+  - cwf: string
+  - variables: Record<string, any>
+
+  + clone(): Context
+}
+
+class MbNode {
+  - attribs: { [key: string]: string }
+  - children: MbNode[]
+}
+
+class urlUtil {
+  + getParentSiteAbsolutePath(contentFilePath: string, rootPath: string, baseUrlMap: Set<string>): string
+}
+
+class logger {
+  + warn(message: string): void
+}
+
+VariableProcessor --> VariableRenderer
+VariableProcessor --> PageSources
+VariableProcessor --> Context
+VariableProcessor --> MbNode
+VariableProcessor --> urlUtil
+VariableProcessor --> logger
+VariableRenderer --> PageSources
+Context --> MbNode
+
+
+

@@ -1,0 +1,36 @@
+@startuml
+class MdAttributeRenderer {
+    - MarkdownProcessor markdownProcessor
+    + MdAttributeRenderer(mdp: MarkdownProcessor)
+    + processAttributeWithoutOverride(node: MbNode, attribute: string, isInline: boolean, slotName: string): void
+    + hasSlotOverridingAttribute(node: MbNode, attribute: string, slotName: string): boolean
+    + processSlotAttribute(node: MbNode, attribute: string, isInline: boolean, slotName: string): void
+    + processPopoverAttributes(node: MbNode): void
+    + processTooltip(node: MbNode): void
+    + processModalAttributes(node: MbNode): void
+    + processPanelAttributes(node: MbNode): void
+    + processQuestion(node: MbNode): void
+    + processQOption(node: MbNode): void
+    + processQuiz(node: MbNode): void
+    + processTabAttributes(node: MbNode): void
+    + processBoxAttributes(node: MbNode): void
+    + processDropdownAttributes(node: MbNode): void
+    + processThumbnailAttributes(node: MbNode): void
+    + processScrollTopButtonAttributes(node: MbNode): void
+    + processAnnotationPointAttributes(node: MbNode): void
+}
+
+class MarkdownProcessor
+class MbNode
+class NodeOrText
+class logger
+
+MdAttributeRenderer --> MarkdownProcessor
+MdAttributeRenderer --> MbNode
+MdAttributeRenderer --> NodeOrText
+MdAttributeRenderer ..> logger : uses
+
+@enduml
+
+
+

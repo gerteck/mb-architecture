@@ -1,0 +1,48 @@
+@startuml
+
+title Link Processor Sequence Diagram
+
+actor User
+participant "Link Processor" as LP
+participant "fsUtil" as FS
+participant "urlUtil" as URL
+participant "logger" as LOG
+participant "ignore" as IGN
+participant "PageSources" as PS
+
+User -> LP: validateIntraLink(resourcePath, cwf, config)
+LP -> URL: stripBaseUrl(resourcePath, config.baseUrl)
+LP -> LP: parse(resourcePath)
+LP -> LP: check hash and extension
+alt Ends with "/"
+    LP -> LP: Append "index.html"
+end
+alt No extension
+    LP -> LP: Check as file asset
+end
+alt Has ".html" extension
+    LP -> LP: Check page source and file asset
+end
+LP -> LOG: log warning if invalid
+LP --> User: return validation result
+
+User -> LP: convertRelativeLinks(node, cwf, rootPath, baseUrl)
+LP -> LP: getDefaultTagsResourcePath(node)
+LP -> LP: check if relative link
+alt Relative link detected
+    LP -> LP: Convert to absolute link
+end
+LP --> User: Updated node
+
+User -> LP: collectSource(node, rootPath, baseUrl, pageSources)
+LP -> LP: Check pluginTagConfig
+alt isSourceFile
+    LP -> URL: stripBaseUrl(sourceFileLink, baseUrl)
+    LP -> FS: resolve fullResourcePath
+    LP -> PS: Add source file to pageSources
+end
+LP --> User: Collection complete
+
+@enduml
+
+

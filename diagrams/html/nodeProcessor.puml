@@ -1,0 +1,53 @@
+@startuml
+class NodeProcessor {
+  +process(file, content, cwf, extraVariables)
+  +processNode(nodeOrText, context)
+  +postProcessNode(nodeOrText)
+  -_processFrontmatter(node, context)
+  -processModal(node)
+}
+
+class Context {
+  -cwf : string
+  -processingOptions: object
+}
+
+class MarkdownProcessor {
+  +renderMd(text)
+  +renderMdInline(text)
+}
+
+class MdAttributeRenderer {
+  +processPanelAttributes(node)
+  +processPopoverAttributes(node)
+}
+
+class SiteLinkManager {
+  +maintainFilePathToHashesMap(node, cwf)
+  +collectIntraLinkToValidate(node, cwf)
+}
+
+class PluginManager {
+  +processNode(node)
+  +postProcessNode(node)
+}
+
+class PageSources {}
+class VariableProcessor {}
+class FootnoteProcessor {
+  +processMbTempFootnotes(node)
+  +combineFootnotes()
+}
+
+NodeProcessor --> Context
+NodeProcessor --> MarkdownProcessor
+NodeProcessor --> MdAttributeRenderer
+NodeProcessor --> SiteLinkManager
+NodeProcessor --> PluginManager
+NodeProcessor --> PageSources
+NodeProcessor --> VariableProcessor
+NodeProcessor --> FootnoteProcessor
+
+@enduml
+
+

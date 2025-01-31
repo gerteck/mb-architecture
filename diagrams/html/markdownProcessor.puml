@@ -1,0 +1,24 @@
+@startuml
+title MarkdownProcessor Sequence Diagram
+
+participant "Caller" as C
+participant "MarkdownProcessor" as MP
+participant "markdown-it" as MD
+
+C -> MP: new MarkdownProcessor(docId)
+MP -> MP: Initialize baseDocId\nInitialize docId
+
+C -> MP: renderMd(text)
+MP -> MD: render(text, { docId })
+MD --> MP: Rendered Markdown
+MP --> C: Return HTML
+
+C -> MP: renderMdInline(text)
+MP -> MD: renderInline(text, { docId })
+MD --> MP: Rendered Inline Markdown
+MP --> C: Return Inline HTML
+
+@enduml
+
+
+
