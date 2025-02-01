@@ -10,14 +10,14 @@
 
 # How does MarkBind Work
 
-I thought that MarkBind's architecture page wasn't comprehensive enough. 
+I thought that MarkBind's Architecture page was helpful, but left me wanting more! So I decided to sweep the codebase and see what's up. 
 
 * [MarkBind Dev Guide](https://markbind.org/devdocs/devGuide/devGuide.html)
 * [MarkBind Architecture Page](https://markbind.org/devdocs/devGuide/design/architecture.html)
 
-So I thought I should do a bit more to understand how MarkBind works. So, here are some diagrams to better understand the flow of MarkBind.
+It helped me to understand more about how MarkBind works. So, here are some diagrams to better understand the flow of MarkBind.
 
-However, I hold no claims over the 100% accuracy of the diagrams shown here.
+This site was based on MarkBind 5.5.3, and may not be updated entirely. Diagrams shown here may not be 100% accurate! Feel free to clone it and make your own changes, or just open a PR! Will merge it if you do!
 
 Cheers! You can read it as a bedtime story (since you might fall asleep).
 
