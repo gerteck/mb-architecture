@@ -229,7 +229,7 @@
       "headingKeywords": {}
     },
     {
-      "src": "contents/vueMigration.md",
+      "src": "contents/vue/vueMigration.md",
       "title": "FAQ",
       "headings": {
         "vue-migration": "Vue Migration"
