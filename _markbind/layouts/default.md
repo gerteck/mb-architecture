@@ -28,6 +28,7 @@
     </dropdown>
     <dropdown header="Vue-Components Library" class="nav-link">
       <li><a href="{{baseUrl}}/contents/vue/vueComponents.html" class="dropdown-item">vue-components</a></li>
+      <li><a href="{{baseUrl}}/contents/vue/vueMigration.html" class="dropdown-item">Vue Migration</a></li> 
     </dropdown>
     <li slot="right">
       <form class="navbar-form">
@@ -65,6 +66,7 @@
   * [core-web]({{baseUrl}}/contents/core-web/core-web.html)
 * Vue Components :expanded:
   * [Vue-components]({{baseUrl}}/contents/vue/vueComponents.html)
+  * [Vue Migration]({{baseUrl}}/contents/vue/vueMigration.html)
       </site-nav>
     </div>
   </nav>

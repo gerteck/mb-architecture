@@ -6,6 +6,10 @@
 
 <br>
 
+<page-nav-print> Table of Contents </page-nav-print>
+
+<br>
+
 # CodeBlockProcessor
 
 The `CodeBlockProcessor` utility provides three main methods, `traverseLinePart` which traverses a line part and applies highlighting, `highlightCodeBlock` which applies pending highlighting to code block, and `setCodeLineNumbers` which appends the `line-numbers` class depending on global settings.

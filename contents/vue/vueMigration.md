@@ -2,11 +2,9 @@
   title: FAQ
 ---
 
-
-
 # Vue Migration
 
-What must I change?
+What must be changed to migrate from Vue 2 to Vue 3? (Ongoing issue)
 
 * Most importantly, need to change the logic in `PageVueServerRenderer.ts` in Page.
 

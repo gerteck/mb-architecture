@@ -1,8 +1,13 @@
 ---
   title: "Page Class"
-  pageNav: 2
+  pageNav: 3
   pageNavTitle: "Page Class"
 ---
+
+<page-nav-print/>
+
+<br>
+
 
 # Page Class
 
@@ -17,6 +22,7 @@ The Page class represents a single page in a MarkBind site. It manages the gener
 
 
 ## 1. Key Properties
+
 * pageConfig: Configuration for the page (e.g., source path, result path, assets).
 * siteConfig: Configuration for the site (e.g., base URL, title prefix, ignore patterns).
 * asset: Assets (e.g., CSS, JS) used by the page.
@@ -28,6 +34,7 @@ The Page class represents a single page in a MarkBind site. It manages the gener
 
 
 ## 2. Key Methods
+
 * resetState(): Resets or initializes stateful variables for the page.
 * isDependency(filePath): Checks if a file is a dependency of the page.
 * prepareTemplateData(content): Prepares data for rendering the page template.
@@ -41,6 +48,7 @@ The Page class represents a single page in a MarkBind site. It manages the gener
 
 
 ## 3. Interactions
+
 * PageConfig: Provides configuration for the page.
 * SiteConfig: Provides configuration for the site.
 * NodeProcessor: Processes the page content (e.g., Markdown, includes).
