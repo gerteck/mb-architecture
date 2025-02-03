@@ -30,6 +30,9 @@
       <li><a href="{{baseUrl}}/contents/vue/vueComponents.html" class="dropdown-item">vue-components</a></li>
       <li><a href="{{baseUrl}}/contents/vue/vueMigration.html" class="dropdown-item">Vue Migration</a></li> 
     </dropdown>
+    <li>
+      <a href="https://github.com/gerteck/mb-architecture" target="_blank" class="nav-link"><md>:fab-github:</md></a>
+    </li>
     <li slot="right">
       <form class="navbar-form">
         <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback" menu-align-right></searchbar>
