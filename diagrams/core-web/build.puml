@@ -1,0 +1,32 @@
+@startuml
+start
+
+:Run npm run build;
+
+if (ENTRY_POINT == client?) then (yes)
+  :Run npm run build:client;
+  :Execute webpack with client.config.js;
+  :Merge webpack.common config with client-specific config;
+  :Set entry point to src/index.js;
+  :Exclude Vue as external dependency;
+  :Set mode to production;
+  :Extract CSS using MiniCssExtractPlugin;
+  :Minify CSS using CssMinimizerPlugin;
+  :Minify JS using TerserPlugin;
+  :Generate output files in dist/;
+else (no)
+  :Run npm run build:server;
+  :Execute webpack with server.config.js;
+  :Merge webpack.common config with server-specific config;
+  :Set entry point to src/VueCommonAppFactory.js;
+  :Set target to node;
+  :Stub browser globals (window, document);
+  :Set mode to production;
+  :Extract CSS using MiniCssExtractPlugin;
+  :Minify CSS using CssMinimizerPlugin;
+  :Minify JS using TerserPlugin;
+  :Generate output files in dist/;
+endif
+
+stop
+@enduml
