@@ -65,4 +65,5 @@ Webpack is used in the @markbind/core-web package during the build process to bu
 Also, note that `npm run build:web` is just an alias for `cd packages/core-web && npm run build`.
 
 
+<puml src="{{ baseUrl }}/diagrams/core-web/build.puml" width=500 />
 
